@@ -3,11 +3,14 @@ const mongoose = require('mongoose'),
 
 const CapSchema = new Schema(
     {
-      value: {type: Number, required: true},
-      tolerance: {type: Number, required: true},
-      voltage_rating: {type: Number, required: true},
+      part: {type: String, required: true},
+      //Type ?
+      volt_drop: {type: Number, required: true},
+      volt_break: {type: Number, required: true},
+      max_current: {type: Number, required: true},
+      power: Number,
       meta: {
-        part_number: String,
+        part-number: String,
         distributer: String,
         quantity: Number
       },

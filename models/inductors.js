@@ -3,8 +3,14 @@ const mongoose = require('mongoose'),
 const IndSchema = new Schema(
     {
       value: {type: Number, required: true},
-      description: {type: String, enum: ['Ceramic', 'Electrolytic', 'Tantalum', 'Polycarbonate', 'Polyexter', 'Silver mica']},
-      connect: {type: String, required: true, enum: ['Surface mount', 'Through hole']}
+      tolerance: {type: Number, required: true},
+      power: {type: Number, required: true},
+      saturation_current: {type: Number, required: true},
+      meta: {
+        part_number: String,
+        distributer: String,
+        quantity: Number
+      },
     }
   );
 

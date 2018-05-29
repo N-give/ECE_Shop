@@ -4,8 +4,13 @@ const ResistorSchema = new Schema(
     {
       value: {type: Number, required: true},
       tolerance: {type: Number, required: true},
-      range: {type: Number},
-      connect: {type: String, required: true, enum: ['Surface mount', 'Through hole', 'Power']}
+      power: {type: Number, required: true},
+      pack: {type: Number, required: true},
+      meta: {
+        part_number: String,
+        distributer: String,
+        quantity: Number
+      },
     }
   );
 

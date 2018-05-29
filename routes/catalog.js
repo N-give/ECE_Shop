@@ -3,8 +3,7 @@ const express = require('express'),
 
 const resistor_controller = require('../controllers/resistorController'),
   capacitor_controller = require('../controllers/capacitorController'),
-  inductor_controller = require('../controllers/inductorController'),
-  int_circ_controller = require('../controllers/int_circController');
+  inductor_controller = require('../controllers/inductorController');
 
 // Catalog home page
 router.get('/', resistor_controller.index);
@@ -62,26 +61,6 @@ router.post('/inductors/update', inductor_controller.inductor_update_post);
 router.get('/inductors/:id', inductor_controller.inductor_detail);
 //get request for list of all inductors
 router.get('/inductors', inductor_controller.inductor_list);
-
-// Catalog home page
-router.get('/', int_circ_controller.index);
-//GET request for creating a int_circ
-router.get('/int_circs/create', int_circ_controller.int_circ_create_get);
-// POST request for creating a int_circ
-router.post('/int_circs/create', int_circ_controller.int_circ_create_post);
-// GET requiest for deleting a int_circ
-router.get('/int_circs/delete', int_circ_controller.int_circ_delete_get);
-// POST request to delete a int_circ
-router.post('/int_circs/delete', int_circ_controller.int_circ_delete_post);
-// GET request to update a int_circ
-router.get('/int_circs/update', int_circ_controller.int_circ_update_get);
-// POST request to update a int_circ
-router.post('/int_circs/update', int_circ_controller.int_circ_update_post);
-// GET request for one int_circ
-router.get('/int_circs/:id', int_circ_controller.int_circ_detail);
-//get request for list of all int_circs
-router.get('/int_circs', int_circ_controller.int_circ_list);
-
 
 // Export router
 module.exports = router;

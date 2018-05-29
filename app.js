@@ -21,8 +21,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error'));
 // Importing mongoose Models
 const capacitors = require('./models/capacitors.js'),
   resistors = require('./models/resistors.js'),
-  int_circ = require('./models/int_circ.js');
-  inductors = require('./models/inductors.js'),
+  inductors = require('./models/inductors.js');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
