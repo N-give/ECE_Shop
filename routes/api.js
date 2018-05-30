@@ -45,10 +45,10 @@ router.get('/:resource/:id', function(req, res, next){
 });
 
 router.post('/:resource', function(req, res, next){
-  console.log(req.params);
+  console.log(req.query);
   var resource = req.params.resource;
   if(resource == 'capacitor'){
-    capacitorController.create(req.params, function(err, result){
+    capacitorController.create(req.query, function(err, result){
       if(err){
         res.json({
           confirmation: 'Fail',
