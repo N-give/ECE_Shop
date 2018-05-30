@@ -3,20 +3,28 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var catalogRouter = require('./routes/catalog');
+//var catalogRouter = require('./routes/catalog');
+var api = require('./routes/api');
 
 var app = express();
 
 // Set mongoose connection
 var mongoose = require('mongoose');
 var mongoDB = 'mongodb://ngivens:Iamsobadatthis@ds161860.mlab.com:61860/ece_database';
-mongoose.connect(mongoDB);
+mongoose.connect(mongoDB, function(err, res){
+  if(err){
+    console.log('DB CONNECTION FAILED: '+err);
+  }else{
+    console.log('DB CONNECTION SUCCESS: '+mongoDB);
+  }
+});
+
 mongoose.Promise = global.Promise;
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'MongoDB connection error'));
 
 // Importing mongoose Models
 const capacitors = require('./models/capacitors.js'),
@@ -28,14 +36,14 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/catalog', catalogRouter);
+app.use('/api', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

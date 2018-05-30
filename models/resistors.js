@@ -1,5 +1,6 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
+
 const ResistorSchema = new Schema(
     {
       value: {type: Number, required: true},
@@ -15,15 +16,9 @@ const ResistorSchema = new Schema(
   );
 
 ResistorSchema
-.virtual('resistor')
-.get(function(){
-  return this.value + ' Ohms \xB1 ' + this.tolerance;
-});
-
-ResistorSchema
 .virtual('url')
 .get(function(){
   return '/catalog/resistor/' + this._id;
 });
 
-module.exports = mongoose.model('Resistor', ResistorSchema);
+module.exports = mongoose.model('ResistorSchema', ResistorSchema);

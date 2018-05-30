@@ -3,9 +3,9 @@ const mongoose = require('mongoose'),
 
 const CapSchema = new Schema(
     {
-      value: {type: Number, required: true},
-      tolerance: {type: Number, required: true},
-      voltage_rating: {type: Number, required: true},
+      value: {type: Number, /*required: true*/},
+      tolerance: {type: Number, /*required: true*/},
+      voltage_rating: {type: Number, /*required: true*/},
       meta: {
         part_number: String,
         distributer: String,
@@ -17,7 +17,7 @@ const CapSchema = new Schema(
 CapSchema
 .virtual('url')
 .get(function(){
-  return 'catalog/capacitor/' + this._id
+  return 'api/capacitor/' + this._id
 });
 
-module.exports = mongoose.model('Capacitor', CapSchema);
+module.exports = mongoose.model('CapSchema', CapSchema);

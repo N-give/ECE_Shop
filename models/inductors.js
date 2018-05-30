@@ -20,4 +20,4 @@ IndSchema
   return 'catalog/capacitor/' + this._id;
 });
 
-module.exports = mongoose.model('Inductor', IndSchema);
+module.exports = mongoose.model('IndSchema', IndSchema);
