@@ -1,68 +1,60 @@
 const express = require('express'),
-  router = express.Router(),
-  capacitorController = require('../controllers/capacitorController.js');
+  router = express.Router();
+var controllers = require('../controllers');
+
 
 router.get('/:resource', function(req, res, next){
   var resource = req.params.resource;
-  if(resource == 'capacitor'){
-    capacitorController.find(req.query, function(err, results){
-      if(err){
-        res.json({
-          confirmation: 'Fail',
-          message: err
-        });
-        return;
-      }
+  var controller = controllers[resource];
 
-      res.json({
-        confirmation: 'Success',
-        results: results
-      });
+  var promise = controller.find(req.query);
+  promise.then(function(component){
+    res.json({
+      confirmation: 'Success',
+      results: component
     });
-  }
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({
+      confirmation: 'Fail'
+    });
+  });
 });
 
 router.get('/:resource/:id', function(req, res, next){
   var resource = req.params.resource;
   var id = req.params.id;
+  var controller = controllers[resource];
 
-  if(resource == 'capacitor'){
-    capacitorController.findById(id, function(err, result){
-      if(err){
-        res.json({
-          confirmation: 'Fail',
-          message: 'Not Found'
-        });
-        return;
-      }
-
-      res.json({
-        confirmation: 'Success',
-        result: result
-      });
+  var promise = controller.findById(id);
+  promise.then(function(component){
+    res.json({
+      confirmation: 'Success',
+      result: component
     });
-  }
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({ confirmation: 'Fail' });
+  });
 });
 
 router.post('/:resource', function(req, res, next){
-  console.log(req.query);
   var resource = req.params.resource;
-  if(resource == 'capacitor'){
-    capacitorController.create(req.query, function(err, result){
-      if(err){
-        res.json({
-          confirmation: 'Fail',
-          message: err
-        });
-        return;
-      }
+  var controller = controllers[resource];
 
+    var promise = controller.create(req.body);
+    promise.then(function(component){
       res.json({
         confirmation: 'Success',
-        result: result
+        result: component
       });
+    })
+    .catch(function(err){
+      console.log(err);
+      res.json({ confirmation: 'Fail' });
     });
-  }
 });
 
 module.exports = router;

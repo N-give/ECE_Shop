@@ -14,6 +14,7 @@ var app = express();
 
 // Set mongoose connection
 var mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 var mongoDB = 'mongodb://ngivens:Iamsobadatthis@ds161860.mlab.com:61860/ece_database';
 mongoose.connect(mongoDB, function(err, res){
   if(err){
@@ -23,7 +24,6 @@ mongoose.connect(mongoDB, function(err, res){
   }
 });
 
-mongoose.Promise = global.Promise;
 var db = mongoose.connection;
 
 // Importing mongoose Models
