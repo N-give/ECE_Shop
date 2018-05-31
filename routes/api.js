@@ -45,7 +45,10 @@ router.post('/:resource', function(req, res, next){
   var controller = controllers[resource];
 
     var promise = controller.create(req.body);
-    promise.then(function(component){
+    promise.then(function(err, component){
+      console.log('****************')
+      console.log(component);
+      console.log('****************')
       res.json({
         confirmation: 'Success',
         result: component
