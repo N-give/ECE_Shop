@@ -3,7 +3,7 @@ const mongoose = require('mongoose'),
 
 const switchSchema = new Schema(
     {
-      use: {type: string, 
+      use: {type: String, 
         enum: ['SPST', 'SPDT', 'DPST', 'DPDT', 'Pushbutton', 'Toggle', 'Float', 'Pressure']
       },
       current_rating: {type: Number, required: true},

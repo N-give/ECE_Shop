@@ -10,7 +10,7 @@ const CapSchema = new Schema(
       max_current: {type: Number, required: true},
       power: Number,
       meta: {
-        part-number: String,
+        part_number: String,
         distributer: String,
         quantity: Number
       },

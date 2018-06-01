@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
-const bjtSchema = new Schema(
+const bjtsSchema = new Schema(
     {
       part: {type: String, retuired: true},
       doping: {type: String, enum: ['n-channel', 'p-channel'], required: true},
@@ -18,10 +18,10 @@ const bjtSchema = new Schema(
     }
   );
 
-mosfetSchema
+bjtsSchema
 .virtual('url')
 .get(function(){
   return 'catalog/bjt/' + this._id
 });
 
-module.exports = mongoose.model('bjtSchema', bjtSchema);
+module.exports = mongoose.model('bjtSchema', bjtsSchema);

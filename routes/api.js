@@ -1,13 +1,12 @@
 const express = require('express'),
   router = express.Router();
-var controllers = require('../controllers');
+var controller = require('../controllers/test.js');
 
 
 router.get('/:resource', function(req, res, next){
   var resource = req.params.resource;
-  var controller = controllers[resource];
 
-  var promise = controller.find(req.query);
+  var promise = controller.find(req.query, resource);
   promise.then(function(component){
     res.json({
       confirmation: 'Success',
@@ -25,9 +24,8 @@ router.get('/:resource', function(req, res, next){
 router.get('/:resource/:id', function(req, res, next){
   var resource = req.params.resource;
   var id = req.params.id;
-  var controller = controllers[resource];
 
-  var promise = controller.findById(id);
+  var promise = controller.findById(id, resource);
   promise.then(function(component){
     res.json({
       confirmation: 'Success',
@@ -42,22 +40,47 @@ router.get('/:resource/:id', function(req, res, next){
 
 router.post('/:resource', function(req, res, next){
   var resource = req.params.resource;
-  var controller = controllers[resource];
 
-    var promise = controller.create(req.body);
-    promise.then(function(err, component){
-      console.log('****************')
-      console.log(component);
-      console.log('****************')
-      res.json({
-        confirmation: 'Success',
-        result: component
-      });
-    })
-    .catch(function(err){
-      console.log(err);
-      res.json({ confirmation: 'Fail' });
+  var promise = controller.create(req.body, resource);
+  promise.then(function(component){
+    res.json({
+      confirmation: 'Success',
+      result: component
     });
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({ confirmation: 'Fail' });
+  });
+});
+
+router.put('/:resource/:id', function(req, res, next){
+  var resource = req.params.resource;
+
+  var promise = controller.update(req.params.id, req.body, resource);
+  promise.then(function(component){
+    res.json({
+      confirmation: 'Success',
+      result: component
+    });
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({ confirmation: 'Fail' });
+  });
+});
+
+router.delete('/:resource/:id', function(req, res, next){
+  var resource = req.params.resource;
+
+  var promise = controller.remove(req.params.id, resource);
+  promise.then(function(){
+    res.json({ confirmation: 'Success' });
+  })
+  .catch(function(err){
+    console.log(err);
+    res.json({ confirmation: 'Fail' });
+  });
 });
 
 module.exports = router;

@@ -23,4 +23,4 @@ opAmpSchema
   return 'catalog/opAmps/' + this._id
 });
 
-module.exports = mongoose.model('Op-Amp', opAmpSchema);
+module.exports = mongoose.model('opAmpSchema', opAmpSchema);
