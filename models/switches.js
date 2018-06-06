@@ -15,10 +15,4 @@ const switchSchema = new Schema(
     }
   );
 
-switchSchema
-.virtual('url')
-.get(function(){
-  return 'catalog/switch/' + this._id
-});
-
 module.exports = mongoose.model('switch', switchSchema);

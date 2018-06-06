@@ -17,10 +17,4 @@ const CapSchema = new Schema(
     }
   );
 
-CapSchema
-.virtual('url')
-.get(function(){
-  return 'catalog/capacitor/' + this._id
-});
-
 module.exports = mongoose.model('Capacitor', CapSchema);

@@ -6,6 +6,9 @@ const CapSchema = new Schema(
       value: {type: Number, required: true},
       tolerance: {type: Number, required: true},
       voltage_rating: {type: Number, required: true},
+			package: {type: String, required: true},
+			location: {type: String, required: true},
+			material: {type: String, required: true},
       meta: {
         part_number: String,
         distributer: String,
@@ -14,10 +17,5 @@ const CapSchema = new Schema(
     }
   );
 
-CapSchema
-.virtual('url')
-.get(function(){
-  return 'api/capacitor/' + this._id
-});
 
 module.exports = mongoose.model('CapSchema', CapSchema);

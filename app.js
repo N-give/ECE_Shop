@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-//var catalogRouter = require('./routes/catalog');
 var api = require('./routes/api');
 
 var app = express();
@@ -15,7 +15,7 @@ var app = express();
 // Set mongoose connection
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-var mongoDB = 'mongodb://ngivens:Iamsobadatthis@ds161860.mlab.com:61860/ece_database';
+var mongoDB = 'mongodb://localhost/ece_database';
 mongoose.connect(mongoDB, function(err, res){
   if(err){
     console.log('DB CONNECTION FAILED: '+err);
@@ -35,9 +35,11 @@ const capacitors = require('./models/capacitors.js'),
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
+app.use(cors());
+
 app.use(logger('dev'));
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 

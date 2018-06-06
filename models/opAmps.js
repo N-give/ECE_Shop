@@ -17,10 +17,4 @@ const opAmpSchema = new Schema(
     }
   );
 
-opAmpSchema
-.virtual('url')
-.get(function(){
-  return 'catalog/opAmps/' + this._id
-});
-
 module.exports = mongoose.model('opAmpSchema', opAmpSchema);

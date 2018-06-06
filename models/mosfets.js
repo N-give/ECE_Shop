@@ -6,9 +6,9 @@ const mosfetSchema = new Schema(
       part: {type: String, retuired: true},
       doping: {type: String, enum: ['n-channel', 'p-channel'], required: true},
       conductance: String,
-      max_currentDrain: Number,
-      max_voltageDrain: Number,
-      max_voltageGate: Number,
+      max_ic: Number,
+      max_vd: Number,
+      max_vg: Number,
       meta: {
         part_number: String,
         distributer: String,
@@ -16,11 +16,5 @@ const mosfetSchema = new Schema(
       },
     }
   );
-
-mosfetSchema
-.virtual('url')
-.get(function(){
-  return 'catalog/mosfet/' + this._id
-});
 
 module.exports = mongoose.model('mosfetSchema', mosfetSchema);

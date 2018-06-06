@@ -16,10 +16,4 @@ const linRegSchema = new Schema(
     }
   );
 
-linRegSchema
-.virtual('url')
-.get(function(){
-  return '/catalog/LinearRegulators/' + this._id;
-});
-
 module.exports = mongoose.model('linRegSchema', linRegSchema);

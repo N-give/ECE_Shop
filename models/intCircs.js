@@ -15,10 +15,4 @@ const intCircSchema = new Schema(
   );
 
 
-intCircSchema
-.virtual('url')
-.get(function(){
-  return '/catalog/IntegratedCircuits/' + this._id;
-});
-
 module.exports = mongoose.model('intCircSchema', intCircSchema);

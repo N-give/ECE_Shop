@@ -14,10 +14,4 @@ const IndSchema = new Schema(
     }
   );
 
-IndSchema
-.virtual('url')
-.get(function(){
-  return 'catalog/capacitor/' + this._id;
-});
-
 module.exports = mongoose.model('IndSchema', IndSchema);

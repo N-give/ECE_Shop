@@ -14,10 +14,10 @@ module.exports = {
   capacitors: capacitors,
   diodes: diodes,
   inductors: inductors,
-  intCircs: intCircs,
-  linRegs: linRegs,
-  mosfets: mosfets,
-  opAmps: opAmps,
+  intcircs: intCircs,
+  linregs: linRegs,
+  fets: mosfets,
+  opamps: opAmps,
   resistors: resistors,
   switches: switches
 }
